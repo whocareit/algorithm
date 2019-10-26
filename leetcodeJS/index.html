@@ -11,35 +11,22 @@
 <body>
     <script>
         var isPalindrome = function (x) {
-            let str = x.toString();
-            var next;
-            var arr = str.split("");
-            let stack = [];
-            let mid = Math.floor(arr.length/2) - 1;
-            let top = 0; //栈顶初始化
-            //将mid之前的字符全部入栈
-            for(let i = 0; i <= mid; i++){
-                stack[++top] = arr[i];
-            }
-            if(arr.length % 2 == 0){
-                next = mid + 1;
-            }else{
-                next = mid + 2;
-            }
-            console.log(arr[next]);
-            for(let i = next; i <= arr.length - 1; i++){
-                if(arr[i] != stack[top]){
-                    break;
-                }
-                top--;
-            }
-            if(top == 0){
-                return true;
-            }else{
+            var t = x;
+            var pop = 0, temp = 0;
+            if (x < 0) {
                 return false;
             }
-            
-        };
+            while (x != 0) {
+                pop = x % 10;
+                x = Math.floor(x / 10);
+                temp = temp * 10 + pop;
+            }
+            if (t == temp) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         console.log(isPalindrome(12))
     </script>
 </body>
