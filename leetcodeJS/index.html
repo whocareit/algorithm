@@ -10,35 +10,37 @@
 
 <body>
     <script>
-        //取反
-        function alt(n) {
-            var sum = 1;
-            for (let i = 0; i < n; i++) {
-                sum = sum * 2;
+        var isPalindrome = function (x) {
+            let str = x.toString();
+            var next;
+            var arr = str.split("");
+            let stack = [];
+            let mid = Math.floor(arr.length/2) - 1;
+            let top = 0; //栈顶初始化
+            //将mid之前的字符全部入栈
+            for(let i = 0; i <= mid; i++){
+                stack[++top] = arr[i];
             }
-            return sum;
-        }
-
-        var reverse = function (x) {
-            var max = alt(31) - 1;
-            var min = -alt(31);
-            var pop;
-            var rev = 0;
-            while (x != 0) {
-                pop = x % 10;
-                if (x > 0) {
-                    x = Math.floor(x / 10);
-                } else {
-                    x = Math.ceil(x / 10);
+            if(arr.length % 2 == 0){
+                next = mid + 1;
+            }else{
+                next = mid + 2;
+            }
+            console.log(arr[next]);
+            for(let i = next; i <= arr.length - 1; i++){
+                if(arr[i] != stack[top]){
+                    break;
                 }
-                if (rev > max / 10 || (rev == max / 10 && pop > 7)) return 0;
-                if (rev < min / 10 || (rev == min / 10 && pop < -8)) return 0;
-                rev = rev * 10 + pop;
+                top--;
             }
-            return rev
-        }
-        console.log(reverse(-25))
-
+            if(top == 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+        };
+        console.log(isPalindrome(12))
     </script>
 </body>
 
