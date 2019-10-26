@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //取反
+        function alt(n) {
+            var sum = 1;
+            for (let i = 0; i < n; i++) {
+                sum = sum * 2;
+            }
+            return sum;
+        }
+
+        var reverse = function (x) {
+            var max = alt(31) - 1;
+            var min = -alt(31);
+            var pop;
+            var rev = 0;
+            while (x != 0) {
+                pop = x % 10;
+                if (x > 0) {
+                    x = Math.floor(x / 10);
+                } else {
+                    x = Math.ceil(x / 10);
+                }
+                if (rev > max / 10 || (rev == max / 10 && pop > 7)) return 0;
+                if (rev < min / 10 || (rev == min / 10 && pop < -8)) return 0;
+                rev = rev * 10 + pop;
+            }
+            return rev
+        }
+        console.log(reverse(-25))
+
+    </script>
+</body>
+
+</html>
