@@ -10,24 +10,28 @@
 
 <body>
     <script>
-        var isPalindrome = function (x) {
-            var t = x;
-            var pop = 0, temp = 0;
-            if (x < 0) {
-                return false;
+        // function nixun(str) {
+        //     var arr = str.split(" ");
+        //     let len = arr.length;
+        //     var str1='';
+        //     for (let i = len - 1; i >= 0; i--) {
+        //         str1 += arr[i] + ' ';   
+        //     }
+        //     return str1;
+        // }
+        // console.log(typeof(nixun("I.s sf d")))
+        function add(num){
+            var pop = 0;
+            var num1 = num
+            var temp = 0;
+            while(num != 0){
+                pop = num%10;
+                num = Math.floor(num / 10);
+                temp = temp*10 + pop;
             }
-            while (x != 0) {
-                pop = x % 10;
-                x = Math.floor(x / 10);
-                temp = temp * 10 + pop;
-            }
-            if (t == temp) {
-                return true;
-            } else {
-                return false;
-            }
+            return temp+num1;
         }
-        console.log(isPalindrome(12))
+        console.log(add(1325))
     </script>
 </body>
 
