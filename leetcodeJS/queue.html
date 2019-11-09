@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Queue(){
+            let item = [];
+            //添加队尾元素
+            this.offer = function(element){
+                item.push(element);
+            }
+            //访问对头元素
+            this.peek = function(){
+                return item[0];
+            }
+            //访问对头并删除
+            this.poll = function(){
+                item.shift();
+            }
+            //队列是否为空
+            this.isEmpty = function(){
+                return item.length === 0;
+            }
+            //访问对头并删除
+            this.remove = function(){
+                item.unshift();
+            }
+        }
+    </script>
+</body>
+</html>

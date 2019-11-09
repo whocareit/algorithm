@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function stack() {
+            let data = [];
+            this.push = function (element) {
+                data.push(element)
+            }
+            this.pop = function () {
+                data.pop();
+            }
+            this.peek = function () {
+                return data[data.length - 1];
+            }
+            this.size = function () {
+                return data.length;
+            }
+        }
+
+        function IsPopOrder(pushV, popV) {
+            // write code here
+            let stack1 = new stack();
+            //由于两者的长度在最初是一样的所以随便获取谁的长度都行
+            let len = pushV.length;
+            //标识判定
+            let flag;
+            for (let i = 0; i < len; i++) {
+                //首先入栈，然后再做判断
+                stack1.push(pushV[i]);
+                //判断的过程中注意一定是弹出序列的第一个元素
+                if (stack1.peek() == popV[0]) {
+                    stack1.pop();
+                    //此处一定需要去删除
+                    popV.splice(0, 1);
+                }
+            }
+            for (let j = 0; j < popV.length; j++) {
+                //当比对成功后，一定要使用pop()，这样才能获取到栈顶的元素
+                if (stack1.peek() == popV[j]) {
+                    stack1.pop();
+                } else {
+                    flag = 0;
+                    break;
+                }
+            }
+            if (flag == 0) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        console.log(IsPopOrder([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]));
+    </script>
+</body>
+
+</html>

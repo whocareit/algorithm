@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 问题描述：
+        // 输入一个链表，输出该链表中倒数第k个结点。
+        // 方法一：思路，首先將链表中的数值都push进一个数组，然后从数组中的倒数第k个重新建立链表并且输出
+        function FindKthToTail(head, k) {
+            // write code here
+            if (head == null) {
+                return head;
+            }
+            let arr = [];
+            let cur = head;
+            while (cur != null) {
+                arr.push(cur.val);
+                cur = cur.next;
+            }
+            if (k > arr.length) {
+                return null;
+            }
+            var result = null;
+            var pre = new ListNode();
+            for (let i = arr.length - k; i < arr.length; i++) {
+                var node = new ListNode(arr[i]);
+                let current;
+                if (result == null) {
+                    result = node;
+                } else {
+                    pre.next = node;
+                }
+                pre = node;
+            }
+            return result;
+        }
+        //方法二：思路通过快慢节点的办法，创建两个节点，一个为快节点一个为慢节点，快节点始终比慢节点多k，因此
+        //首先快节点先走k个，然后再快慢节点一起走，当快节点当到末尾时，慢节点也刚好到达倒数第二个节点，具体实现
+        //代码如下：
+        function FindKthToTail1(head, k) {
+            // write code here
+            if (head == null) {
+                return head;
+            }
+            let slow = head;
+            let quick = head;
+            let count = 0;
+            while (quick != null) {
+                quick = quick.next;
+                count++;
+                if (count >= k + 1) {
+                    slow = slow.next;
+                }
+            }
+            if (k > count) {
+                return null;
+            }
+            return slow;
+        }
+
+        //链表反转：首先去遍历一遍链表，然后将每次遍历的val，push进一个数组，最后将整个数组反转
+        //然后重新建一个链表，最后输出表头即可
+        function ListNode(x) {
+            this.val = x;
+            this.next = null;
+        }
+        function ReverseList(pHead) {
+            // write code here
+            if (pHead == null || pHead.next == null) {
+                return pHead;
+            }
+            var arr = [];
+            var cur = pHead;
+            while (cur != null) {
+                arr.push(cur.val);
+                cur = cur.next;
+            }
+            var newArr = arr.reverse();
+            var temp = new ListNode();
+            var result = null;
+            for (let i = 0; i < newArr.length; i++) {
+                var node = new ListNode(newArr[i]);
+                if (result == null) {
+                    result = node;
+                } else {
+                    temp.next = node;
+                }
+                temp = node;
+            }
+            return result;
+        }
+
+    </script>
+</body>
+
+</html>
